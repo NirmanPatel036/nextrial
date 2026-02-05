@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, Suspense } from 'react';
 import { motion } from 'framer-motion';
 import { Send, Sparkles, FileText, Database, Loader2, Network, DatabaseZap, User, Bot, Copy, Check, Map as MapIcon, Volume2, VolumeX } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
@@ -65,7 +65,7 @@ interface Message {
     processing_time?: number;
 }
 
-export default function ChatPage() {
+function ChatPageContent() {
     const router = useRouter();
     const searchParams = useSearchParams();
     const conversationIdParam = searchParams.get('conversation');
@@ -1093,5 +1093,24 @@ export default function ChatPage() {
                 onClose={() => setSourcesModalOpen(false)}
             />
         </main>
+    );
+}
+
+export default function ChatPage() {
+    return (
+        <Suspense fallback={
+            <main className="min-h-screen pt-16 pb-8">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-[calc(100vh-8rem)]">
+                    <GlassCard className="h-full flex items-center justify-center">
+                        <div className="text-center">
+                            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
+                            <p className="text-muted-foreground">Loading chat...</p>
+                        </div>
+                    </GlassCard>
+                </div>
+            </main>
+        }>
+            <ChatPageContent />
+        </Suspense>
     );
 }
