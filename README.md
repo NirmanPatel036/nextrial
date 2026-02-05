@@ -459,7 +459,7 @@ If you use this project in your research, please cite:
   author = {Patel, Nirman},
   title = {NexTrial: AI-Powered Clinical Trial Matching Platform},
   year = {2026},
-  url = {https://github.com/NirmanPatel036/clinical-trial-matcher}
+  url = {https://github.com/NirmanPatel036/nextrial}
 }
 ```
 
