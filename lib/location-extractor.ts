@@ -22,7 +22,7 @@ export interface LocationExtractionResult {
 export async function extractLocationsWithLLM(text: string): Promise<ExtractedLocation[]> {
   try {
     // Check if API key is configured
-    const apiKey = process.env.NEXT_PUBLIC_GOOGLE_API_KEY || '';
+    const apiKey = process.env.GOOGLE_API_KEY || '';
 
     if (!apiKey) {
       console.warn('⚠️ Google API key not configured, using fallback extraction');
