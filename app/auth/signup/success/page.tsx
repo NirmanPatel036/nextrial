@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Suspense } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, CheckCircle, ArrowRight, Clock } from 'lucide-react';
 import Link from 'next/link';
@@ -8,7 +8,7 @@ import { useSearchParams } from 'next/navigation';
 import BlurryBlob from '@/components/animata/background/blurry-blob';
 import { Button } from '@/components/ui/Button';
 
-export default function SignupSuccessPage() {
+function SignupSuccessPageContent() {
   const searchParams = useSearchParams();
   const email = searchParams.get('email') || 'your email';
   const [timeLeft, setTimeLeft] = useState(60);
@@ -202,5 +202,22 @@ export default function SignupSuccessPage() {
         </div>
       </motion.div>
     </div>
+  );
+}
+
+export default function SignupSuccessPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-background via-primary/5 to-background p-4">
+        <div className="backdrop-blur-xl bg-white/10 border border-white/20 rounded-2xl p-8 shadow-2xl">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
+            <p className="text-muted-foreground">Loading...</p>
+          </div>
+        </div>
+      </div>
+    }>
+      <SignupSuccessPageContent />
+    </Suspense>
   );
 }
