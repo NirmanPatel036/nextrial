@@ -155,7 +155,7 @@ function DeveloperCard() {
                         <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 via-purple-500/10 to-pink-500/10 animate-pulse" />
                         <div className="relative z-10 text-center space-y-4">
                             <Image
-                                src="/IMG_1264.jpg"
+                                src="/IMG_1264.JPG"
                                 alt="Nirman Patel"
                                 width={550}
                                 height={300}
